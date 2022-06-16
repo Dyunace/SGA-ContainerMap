@@ -1,4 +1,4 @@
-// ContainerMap v0.1
+// ContainerMap v0.2
 #include <iostream>
 
 #include <string>
@@ -8,50 +8,39 @@
 
 using namespace std;
 
+map<int, int> Numbers;
+
+void AddData(int _Key, int _Value);
+
 int main(void)
 {
+	Numbers[0] = 0;
+	Numbers[1] = 10;
+	Numbers.insert(make_pair(3, 30));
+
+	Numbers[1] = 100;
+
+	AddData(2, 200);
+
 	/*
-	map<string, int> Numbers;
+	Numbers.insert(make_pair(2, 200));
 
-	// Key, Value
-	// map<int, int>
-
-	Numbers["A"] = 1;
-	Numbers["B"] = 2;
-	Numbers["C"] = 3;
-	Numbers["D"] = 4;
-	Numbers["E"] = 5;
+	iter->second = 200;
+	*/
 
 	for (auto iter = Numbers.begin();
 		iter != Numbers.end(); ++iter)
-	{
-		cout << iter->first << endl;
-		cout << iter->second << endl << endl;
-	}
-	*/
-
-	enum Key 
-	{
-		Player,
-		Enemy,
-		Bullet,
-		Max,
-	};
-
-	const int MaxObject = 128;
-
-	int Array[Max][MaxObject];
-
-	for (int i = 0; i < Max; ++i)
-	{
-		for (int j = 0; j < MaxObject; ++j)
-		{
-			Array[i][j] = j;
-		}
-	}
-
-	for (int i = 0; i < MaxObject; ++i)
-		cout << Array[Enemy][i] << endl;
+		cout << iter->second << endl;
 
 	return 0;
+}
+
+void AddData(int _Key, int _Value)
+{
+	auto iter = Numbers.find(_Key);
+
+	if (iter == Numbers.end())
+		Numbers.insert(make_pair(_Key, _Value));
+	else
+		iter->second = _Value;
 }
